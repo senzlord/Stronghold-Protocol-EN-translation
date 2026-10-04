@@ -1,0 +1,17 @@
+services:
+  stronghold:
+    build:
+      context: .
+      args:
+        FETCH_ASSETS: "1"
+    container_name: stronghold-protocol
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      HOST: "0.0.0.0"
+      SP_COMBAT: "client"
+      SP_VERIFY: "off"
+      TRUST_PROXY: "auto"
+      SP_NO_BROWSER: "1"
+    restart: unless-stopped
