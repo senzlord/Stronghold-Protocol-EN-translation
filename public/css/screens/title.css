@@ -72,7 +72,11 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, rgba(23, 249, 183, .28), rgba(23, 249, 183, 0) 22%, transparent 100%);
+  /* The bright edge must LEAD and the glow must trail BEHIND it. A conic gradient's angle grows
+     clockwise from 0deg (12 o'clock), and radar-sweep rotates clockwise too — so the bright end has
+     to sit at 100% (== 0deg) and fade counter-clockwise from there. Written the other way round
+     (bright at 0% fading to 22%) the glow fans out AHEAD of the beam and the sweep reads backwards. */
+  background: conic-gradient(from 0deg, transparent 0 78%, rgba(23, 249, 183, .28) 100%);
   animation: radar-sweep 6s linear infinite;
 }
 @keyframes radar-sweep { to { transform: rotate(360deg); } }
@@ -238,6 +242,9 @@
 .title-invite b { font-size: .2rem; letter-spacing: .2em; color: #ffd08a; }
 .title-conn { display: flex; align-items: center; justify-content: center; gap: .1rem; min-height: .32rem; font-size: .14rem; color: var(--text-lo); }
 .title-conn .ping { height: .26rem; font-size: .15rem; }
+/* 中文 | EN switch (the .set-seg look of the settings modal, sized for the connection row) */
+.title-conn .title-lang { margin-left: .06rem; }
+.title-conn .title-lang button { min-width: .52rem; height: .28rem; font-size: .13rem; }
 
 .title-foot {
   position: absolute;
